@@ -23,9 +23,9 @@ export class DocsService {
   public addDoc(name: string, viewerId: string, ownerId: string): Observable<any> {
     let doc = {
       name: name,
-      positivesCards: {},
-      negativesCards: {},
-      otherCards: {},
+      positivesCards: [],
+      negativesCards: [],
+      otherCards: [],
       viewerId: viewerId,
       completed: false,
       ownerId: ownerId,
@@ -35,14 +35,23 @@ export class DocsService {
     return this.http.post<any>(`${this.contextUrl}/docs`, doc);
   }
 
-  public updateDoc(id: string, name: string, viewerId: string, ownerId: string): Observable<any> {
+  public updateDoc(
+    id: string,
+    name?: string,
+    positivesCards?: [],
+    negativesCards?: [],
+    otherCards?: [],
+    viewerId?: string,
+    completed?: boolean,
+    ownerId?: string,
+  ): Observable<any> {
     let doc = {
       name: name,
-      positivesCards: {},
-      negativesCards: {},
-      otherCards: {},
+      positivesCards: positivesCards,
+      negativesCards: negativesCards,
+      otherCards: otherCards,
       viewerId: viewerId,
-      completed: false,
+      completed: completed,
       ownerId: ownerId,
     };
 
