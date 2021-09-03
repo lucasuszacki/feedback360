@@ -1,0 +1,11 @@
+<div>
+  <select class="custom-select" *ngIf="users.length; else elseBlock">
+    <option selected>Selecione...</option>
+    <option value="{{ user.name }}" *ngFor="let user of users">{{ user.name }}</option>
+  </select>
+  <ng-template #elseBlock>
+    <select class="custom-select">
+      <option selected>Sem dados...</option>
+    </select>
+  </ng-template>
+</div>
