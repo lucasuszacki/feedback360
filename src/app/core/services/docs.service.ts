@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Docs } from '../models/docs.model';
 import { environment } from '../../../environments/environment';
@@ -30,7 +31,7 @@ export class DocsService {
       viewerId: viewerId,
       completed: false,
       ownerId: ownerId,
-      docsId: Math.random(),
+      docsId: uuidv4(),
     };
 
     return this.http.post<Docs>(`${this.contextUrl}/docs`, doc);
