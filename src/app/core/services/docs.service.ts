@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Docs } from '../models/docs.model';
+import { Doc } from '../models/doc.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -14,15 +14,15 @@ export class DocsService {
 
   constructor(private http: HttpClient) {}
 
-  public getDocs(): Observable<Docs> {
-    return this.http.get<Docs>(`${this.contextUrl}/docs`);
+  public getDocs(): Observable<Doc[]> {
+    return this.http.get<Doc[]>(`${this.contextUrl}/docs`);
   }
 
-  public getDoc(id: string): Observable<Docs> {
-    return this.http.get<Docs>(`${this.contextUrl}/docs/${id}`);
+  public getDoc(id: string): Observable<Doc> {
+    return this.http.get<Doc>(`${this.contextUrl}/docs/${id}`);
   }
 
-  public addDoc(name: string, viewerId: string, ownerId: string): Observable<Docs> {
+  public addDoc(name: string, viewerId: string, ownerId: string): Observable<Doc> {
     let doc = {
       name: name,
       positivesCards: [],
@@ -34,7 +34,7 @@ export class DocsService {
       docsId: uuidv4(),
     };
 
-    return this.http.post<Docs>(`${this.contextUrl}/docs`, doc);
+    return this.http.post<Doc>(`${this.contextUrl}/docs`, doc);
   }
 
   public updateDoc(
@@ -46,7 +46,7 @@ export class DocsService {
     viewerId?: string,
     completed?: boolean,
     ownerId?: string,
-  ): Observable<Docs> {
+  ): Observable<Doc> {
     let doc = {
       name: name,
       positivesCards: positivesCards,
@@ -57,10 +57,10 @@ export class DocsService {
       ownerId: ownerId,
     };
 
-    return this.http.put<Docs>(`${this.contextUrl}/docs/${id}`, doc);
+    return this.http.put<Doc>(`${this.contextUrl}/docs/${id}`, doc);
   }
 
-  public deleteDoc(id: string): Observable<Docs> {
-    return this.http.delete<Docs>(`${this.contextUrl}/docs/${id}`);
+  public deleteDoc(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.contextUrl}/docs/${id}`);
   }
 }

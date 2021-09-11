@@ -14,8 +14,8 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  public getUsers(): Observable<User> {
-    return this.http.get<User>(`${this.contextUrl}/users`);
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.contextUrl}/users`);
   }
 
   public getUser(id: string): Observable<User> {
@@ -41,7 +41,7 @@ export class UsersService {
     return this.http.put<User>(`${this.contextUrl}/users/${id}`, user);
   }
 
-  public deleteUser(id: string): Observable<User> {
-    return this.http.delete<User>(`${this.contextUrl}/users/${id}`);
+  public deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.contextUrl}/users/${id}`);
   }
 }

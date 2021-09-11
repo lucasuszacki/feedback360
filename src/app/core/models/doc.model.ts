@@ -1,6 +1,6 @@
 import { GlobalModel } from './global.model';
 
-export interface Docs extends GlobalModel {
+export interface Doc extends GlobalModel {
   positivesCards?: [];
   negativesCards?: [];
   otherCards?: [];

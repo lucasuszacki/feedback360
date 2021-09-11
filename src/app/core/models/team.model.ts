@@ -1,3 +1,3 @@
 import { GlobalModel } from './global.model';
 
-export interface Teams extends GlobalModel {}
+export interface Team extends GlobalModel {}
