@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { User } from '../models/user.model';
 import { environment } from '../../../environments/environment';
@@ -25,7 +26,7 @@ export class UsersService {
     let user = {
       name: name,
       team: team,
-      userId: Math.random(),
+      userId: uuidv4(),
     };
 
     return this.http.post<User>(`${this.contextUrl}/users`, user);
