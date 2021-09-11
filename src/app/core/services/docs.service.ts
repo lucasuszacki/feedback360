@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { Docs } from '../models/docs.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -12,15 +13,15 @@ export class DocsService {
 
   constructor(private http: HttpClient) {}
 
-  public getDocs(): Observable<any> {
-    return this.http.get<string[]>(`${this.contextUrl}/docs`);
+  public getDocs(): Observable<Docs> {
+    return this.http.get<Docs>(`${this.contextUrl}/docs`);
   }
 
-  public getDoc(id: string): Observable<any> {
-    return this.http.get<string[]>(`${this.contextUrl}/docs/${id}`);
+  public getDoc(id: string): Observable<Docs> {
+    return this.http.get<Docs>(`${this.contextUrl}/docs/${id}`);
   }
 
-  public addDoc(name: string, viewerId: string, ownerId: string): Observable<any> {
+  public addDoc(name: string, viewerId: string, ownerId: string): Observable<Docs> {
     let doc = {
       name: name,
       positivesCards: [],
@@ -32,7 +33,7 @@ export class DocsService {
       docsId: Math.random(),
     };
 
-    return this.http.post<any>(`${this.contextUrl}/docs`, doc);
+    return this.http.post<Docs>(`${this.contextUrl}/docs`, doc);
   }
 
   public updateDoc(
@@ -44,7 +45,7 @@ export class DocsService {
     viewerId?: string,
     completed?: boolean,
     ownerId?: string,
-  ): Observable<any> {
+  ): Observable<Docs> {
     let doc = {
       name: name,
       positivesCards: positivesCards,
@@ -55,10 +56,10 @@ export class DocsService {
       ownerId: ownerId,
     };
 
-    return this.http.put<any>(`${this.contextUrl}/docs/${id}`, doc);
+    return this.http.put<Docs>(`${this.contextUrl}/docs/${id}`, doc);
   }
 
-  public deleteDoc(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.contextUrl}/docs/${id}`);
+  public deleteDoc(id: string): Observable<Docs> {
+    return this.http.delete<Docs>(`${this.contextUrl}/docs/${id}`);
   }
 }
