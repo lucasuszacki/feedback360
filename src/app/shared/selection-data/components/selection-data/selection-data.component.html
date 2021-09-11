@@ -1,7 +1,7 @@
 <div>
-  <select class="custom-select" *ngIf="users.length; else elseBlock">
+  <select class="custom-select" *ngIf="data.length; else elseBlock">
     <option selected>Selecione...</option>
-    <option value="{{ user.name }}" *ngFor="let user of users">{{ user.name }}</option>
+    <option *ngFor="let content of data" value="{{ content.name }}">{{ content.name }}</option>
   </select>
   <ng-template #elseBlock>
     <select class="custom-select">
