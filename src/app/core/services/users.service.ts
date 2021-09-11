@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { User } from '../models/user.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -12,34 +13,34 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  public getUsers(): Observable<any> {
-    return this.http.get<string[]>(`${this.contextUrl}/users`);
+  public getUsers(): Observable<User> {
+    return this.http.get<User>(`${this.contextUrl}/users`);
   }
 
-  public getUser(id: string): Observable<any> {
-    return this.http.get<string[]>(`${this.contextUrl}/users/${id}`);
+  public getUser(id: string): Observable<User> {
+    return this.http.get<User>(`${this.contextUrl}/users/${id}`);
   }
 
-  public addUser(name: string, team: string): Observable<any> {
+  public addUser(name: string, team: string): Observable<User> {
     let user = {
       name: name,
       team: team,
       userId: Math.random(),
     };
 
-    return this.http.post<any>(`${this.contextUrl}/users`, user);
+    return this.http.post<User>(`${this.contextUrl}/users`, user);
   }
 
-  public updateUser(id: string, name?: string, team?: string): Observable<any> {
+  public updateUser(id: string, name?: string, team?: string): Observable<User> {
     let user = {
       name: name,
       team: team,
     };
 
-    return this.http.put<any>(`${this.contextUrl}/users/${id}`, user);
+    return this.http.put<User>(`${this.contextUrl}/users/${id}`, user);
   }
 
-  public deleteUser(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.contextUrl}/users/${id}`);
+  public deleteUser(id: string): Observable<User> {
+    return this.http.delete<User>(`${this.contextUrl}/users/${id}`);
   }
 }

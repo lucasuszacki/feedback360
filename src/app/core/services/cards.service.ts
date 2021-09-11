@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { Cards } from '../models/cards.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -12,15 +13,15 @@ export class CardsService {
 
   constructor(private http: HttpClient) {}
 
-  public getCards(): Observable<any> {
-    return this.http.get<string[]>(`${this.contextUrl}/cards`);
+  public getCards(): Observable<Cards> {
+    return this.http.get<Cards>(`${this.contextUrl}/cards`);
   }
 
-  public getCard(id: string): Observable<any> {
-    return this.http.get<string[]>(`${this.contextUrl}/cards/${id}`);
+  public getCard(id: string): Observable<Cards> {
+    return this.http.get<Cards>(`${this.contextUrl}/cards/${id}`);
   }
 
-  public addCard(ownerId: string, name: string): Observable<any> {
+  public addCard(ownerId: string, name: string): Observable<Cards> {
     let card = {
       ownerId: ownerId,
       name: name,
@@ -28,7 +29,7 @@ export class CardsService {
       viewerReaction: '',
     };
 
-    return this.http.post<any>(`${this.contextUrl}/cards`, card);
+    return this.http.post<Cards>(`${this.contextUrl}/cards`, card);
   }
 
   public updateCard(
@@ -37,7 +38,7 @@ export class CardsService {
     name?: string,
     upVotes?: [],
     viewerReaction?: string,
-  ): Observable<any> {
+  ): Observable<Cards> {
     let card = {
       ownerId: ownerId,
       name: name,
@@ -45,10 +46,10 @@ export class CardsService {
       viewerReaction: viewerReaction,
     };
 
-    return this.http.put<any>(`${this.contextUrl}/cards/${id}`, card);
+    return this.http.put<Cards>(`${this.contextUrl}/cards/${id}`, card);
   }
 
-  public deleteCard(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.contextUrl}/cards/${id}`);
+  public deleteCard(id: string): Observable<Cards> {
+    return this.http.delete<Cards>(`${this.contextUrl}/cards/${id}`);
   }
 }
