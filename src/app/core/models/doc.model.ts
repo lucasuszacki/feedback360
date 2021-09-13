@@ -8,4 +8,5 @@ export interface Doc extends GlobalModel {
   ownerId?: string;
   docsId?: string;
   completed?: boolean;
+  teamId?: string;
 }
