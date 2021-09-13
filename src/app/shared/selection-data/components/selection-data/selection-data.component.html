@@ -1,10 +1,10 @@
 <div>
-  <select class="custom-select" *ngIf="data.length; else elseBlock">
+  <select class="form-control" *ngIf="data.length; else elseBlock" (change)="selectedChange($event)">
     <option selected>Selecione...</option>
-    <option *ngFor="let content of data" value="{{ content.name }}">{{ content.name }}</option>
+    <option *ngFor="let content of data" value="{{ content.id }}">{{ content.name }}</option>
   </select>
   <ng-template #elseBlock>
-    <select class="custom-select">
+    <select class="form-control">
       <option selected>Sem dados...</option>
     </select>
   </ng-template>

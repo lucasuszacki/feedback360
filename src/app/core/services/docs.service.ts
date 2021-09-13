@@ -22,7 +22,7 @@ export class DocsService {
     return this.http.get<Doc>(`${this.contextUrl}/docs/${id}`);
   }
 
-  public addDoc(name: string, viewerId: string, ownerId: string): Observable<Doc> {
+  public addDoc(name: string, viewerId: string, teamId: string, ownerId?: string): Observable<Doc> {
     let doc = {
       name: name,
       positivesCards: [],
@@ -32,6 +32,7 @@ export class DocsService {
       completed: false,
       ownerId: ownerId,
       docsId: uuidv4(),
+      teamId: teamId,
     };
 
     return this.http.post<Doc>(`${this.contextUrl}/docs`, doc);
@@ -46,6 +47,7 @@ export class DocsService {
     viewerId?: string,
     completed?: boolean,
     ownerId?: string,
+    teamId?: string,
   ): Observable<Doc> {
     let doc = {
       name: name,
@@ -55,6 +57,7 @@ export class DocsService {
       viewerId: viewerId,
       completed: completed,
       ownerId: ownerId,
+      teamId: teamId,
     };
 
     return this.http.put<Doc>(`${this.contextUrl}/docs/${id}`, doc);

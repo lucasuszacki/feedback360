@@ -1,3 +1,64 @@
-<p>dashboard-overview works!</p>
+<div class="container-fluid">
+  <div class="d-flex flex-row p-2">
+    <div></div>
+    <div id="newDocsModalOpen">
+      <button type="button" class="btn btn-secondary" (click)="open(content)">Novo</button>
 
-<app-selection-data [data]="users"></app-selection-data>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Novo Documento</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="docsTitle">Título</label>
+              <input
+                type="text"
+                class="form-control"
+                id="docsTitle"
+                placeholder="360 - Fulano..."
+                (change)="titleChange($event.target.value)"
+              />
+            </div>
+            <div class="form-group">
+              <label for="docsTeam">Time</label>
+              <app-selection-data
+                id="docsTeam"
+                (selectedValue)="teamChange($event.target.value)"
+                [data]="teams"
+                #docsTeam
+              ></app-selection-data>
+            </div>
+            <div class="form-group">
+              <label for="docsUser">Quem receberá o feedback?</label>
+              <app-selection-data
+                id="docsUser"
+                (selectedValue)="viewerChange($event.target.value)"
+                [data]="users"
+                #docsUser
+              ></app-selection-data>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Concluir</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="alert" class="d-flex justify-content-center">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Sucesso!</strong> Seu documento foi criado com êxito.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="alert = false">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { GlobalModel } from '../../../../core/models/global.model';
 
@@ -9,6 +9,11 @@ import { GlobalModel } from '../../../../core/models/global.model';
 })
 export class SelectionDataComponent {
   @Input() public data: GlobalModel[] = [];
+  @Output() selectedValue = new EventEmitter<string>();
 
   constructor() {}
+
+  selectedChange(value: string) {
+    this.selectedValue.emit(value);
+  }
 }
