@@ -22,20 +22,20 @@ export class UsersService {
     return this.http.get<User>(`${this.contextUrl}/users/${id}`);
   }
 
-  public addUser(name: string, team: string): Observable<User> {
+  public addUser(name: string, teams: string[]): Observable<User> {
     let user = {
       name: name,
-      team: team,
+      teams: teams,
       userId: uuidv4(),
     };
 
     return this.http.post<User>(`${this.contextUrl}/users`, user);
   }
 
-  public updateUser(id: string, name?: string, team?: string): Observable<User> {
+  public updateUser(id: string, name?: string, teams?: string[]): Observable<User> {
     let user = {
       name: name,
-      team: team,
+      teams: teams,
     };
 
     return this.http.put<User>(`${this.contextUrl}/users/${id}`, user);

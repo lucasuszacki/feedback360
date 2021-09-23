@@ -1,6 +1,6 @@
 import { GlobalModel } from './global.model';
 
 export interface User extends GlobalModel {
-  team?: string;
+  teams?: string[];
   userId?: string;
 }
