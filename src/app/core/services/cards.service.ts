@@ -21,10 +21,10 @@ export class CardsService {
     return this.http.get<Card>(`${this.contextUrl}/cards/${id}`);
   }
 
-  public addCard(ownerId: string, name: string): Observable<Card> {
+  public addCard(ownerId: string, content: string): Observable<Card> {
     let card = {
       ownerId: ownerId,
-      name: name,
+      content: content,
       upVotes: [],
       viewerReaction: '',
     };
@@ -35,13 +35,13 @@ export class CardsService {
   public updateCard(
     id: string,
     ownerId?: string,
-    name?: string,
+    content?: string,
     upVotes?: [],
     viewerReaction?: string,
   ): Observable<Card> {
     let card = {
       ownerId: ownerId,
-      name: name,
+      content: content,
       upVotes: upVotes,
       viewerReaction: viewerReaction,
     };
